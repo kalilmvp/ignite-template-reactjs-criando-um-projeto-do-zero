@@ -105,8 +105,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const prismic = getPrismicClient();
   const response = await prismic.getByUID('posts_ignite', String(slug), {});
   
-  console.log(JSON.stringify(response, null, 2));
-  
   response.data.content.map(content => {
     
   })
@@ -123,8 +121,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       }
     )
   });
-
-  console.log(post);
 
   return {
     props: {

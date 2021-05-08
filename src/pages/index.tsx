@@ -43,8 +43,23 @@ export default function Home({ postsPagination }: HomeProps) {
           }
         ); 
       });
+
+      console.log('primeiro', postsPagination.results);
+      console.log('segundo', data.results);
       
-      setPostsPaginationState(Object.assign(data));
+      // const array1 = ['1','2','3','4'].concat(['5', '6']);
+      // console.log('array', array1);
+      
+      // const teste = Object.assign(data, {
+      //   results: [ ...postsPagination.results ].push(data.results)
+      // });
+      //
+      // console.log(teste);
+      
+      // const finalResult = [...postsPagination.results, data.results];
+      setPostsPaginationState(Object.assign(data, {
+        results: postsPagination.results.concat(data.results)
+      }));
     })
   }, []);
 
@@ -53,8 +68,8 @@ export default function Home({ postsPagination }: HomeProps) {
       <main className={styles.container}>
         <div className={styles.post}>
           { postPaginationState.results.map(post => (
-            <div className={styles.postItem}>
-              <Link key={ post.uid } href={ `/post/${ post.uid }` }>
+            <div key={ post.uid } className={styles.postItem}>
+              <Link href={ `/post/${ post.uid }` }>
                 <a>
                   <strong>{ post.data.title }</strong>
                   <p>{ post.data.subtitle }</p>
