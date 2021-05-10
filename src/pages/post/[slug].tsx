@@ -105,14 +105,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const prismic = getPrismicClient();
   const response = await prismic.getByUID('posts_ignite', String(slug), {});
   
-  response.data.content.map(content => {
-    
-  })
-  
-  const tempoDeLeituraFinal = null;
+  const qtdPalavras = response.data.content.reduce((total, content) => {
+    let words = content.heading?.split(' ').length ?? 0;
+    words += RichText.asText(content.body).split(' ').filter(word => word.match(/^[\w, "'-.]{2,}/g)).length;
+    return total + words;
+  }, 0);
+  const tempoDeLeitura = String(Math.ceil(qtdPalavras/200)).concat(' min');
   
   const post: Post = Object.assign(response, {
-    tempoDeLeitura: '4 min',
+    tempoDeLeitura,
     first_publication_date: format(
       new Date(response.first_publication_date),
       'dd MMM yyyy',
