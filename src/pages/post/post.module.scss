@@ -45,6 +45,56 @@
       }
     }
   }
+  
+  .editadoEm {
+    font-size: 1rem;
+    color: var(--gray-300);
+    font-style: italic;
+  }
+
+  .outrosPostsContainer {
+    margin-top: 2rem;
+    border-top: 1px solid var(--body);
+    
+    .outrosPostsLinks {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      
+      .link {
+        display: flex;
+        flex-direction: column;
+        
+        span {
+          font-size: 18px;
+          font-weight: 400;
+        }
+
+        a {
+          cursor: pointer;
+          color: var(--pink);
+          font-size: 18px;
+          font-weight: 600;
+          line-height: 3rem;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .semPost {
+        opacity: 0.5;
+        
+        a {
+          cursor: not-allowed;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
 }
 
 .postContentContainer {
@@ -78,4 +128,8 @@
       -webkit-text-fill-color: transparent;
     }
   }
+}
+
+.comments {
+  margin-top: 4rem;
 }
